@@ -19,3 +19,11 @@ module "vpc-app" {
   vpc_azs             = var.vpc_azs
   tags                = var.tags
 }
+
+module "dynamodb-table-app" {
+  source        = "./modules/dynamodb"
+  label         = var.app_name
+  table_name    = var.dynamodb_table_name
+  partition_key = var.dynamodb_partition_key
+  tags          = var.tags
+}

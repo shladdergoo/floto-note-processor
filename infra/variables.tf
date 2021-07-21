@@ -25,3 +25,11 @@ variable "vpc_public_subnets" {
 variable "vpc_azs" {
   default = ["eu-west-1a", "eu-west-1b"]
 }
+
+variable "dynamodb_table_name" {
+  default = "note"
+}
+
+variable "dynamodb_partition_key" {
+  default = "NoteID"
+}

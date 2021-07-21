@@ -9,7 +9,7 @@ variable "region" {
 }
 
 variable "label" {
-  description = "A readable label given to the VPC and potentially other resources asscoiated with it"
+  description = "A programatically readable label given to the VPC and potentially other resources asscoiated with it"
 }
 
 variable "vpc_cidr" {
