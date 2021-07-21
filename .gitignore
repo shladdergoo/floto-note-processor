@@ -1,0 +1,10 @@
+# local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# IDE config files
+**/.idea/*
+**/.vscode/*
