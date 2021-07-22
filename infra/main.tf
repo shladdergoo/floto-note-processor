@@ -27,3 +27,12 @@ module "dynamodb-table-app" {
   partition_key = var.dynamodb_partition_key
   tags          = var.tags
 }
+
+resource "aws_ecr_repository" "note-processor-image-repo" {
+  name                 = "${var.app_name}-note-processor"
+  image_tag_mutability = "MUTABLE"
+
+  image_scanning_configuration {
+    scan_on_push = false
+  }
+}
