@@ -4,7 +4,3 @@
 # .tfstate files
 *.tfstate
 *.tfstate.*
-
-# IDE config files
-**/.idea/*
-**/.vscode/*
