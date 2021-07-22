@@ -29,10 +29,21 @@ module "dynamodb-table-app" {
 }
 
 resource "aws_ecr_repository" "note-processor-image-repo" {
-  name                 = "${var.app_name}-note-processor"
+  name                 = "${var.app_name}-${var.note_processor_function_name}"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
     scan_on_push = false
   }
+}
+
+module "lambda-note-processor" {
+  source      = "./modules/lambda-container"
+  label       = var.app_name
+  name        = "${var.app_name}-${var.note_processor_function_name}"
+  description = "${var.note_processor_function_name} function"
+  account_id  = var.account_id
+  region      = var.region
+  image_name  = var.note_processor_image_name
+  image_tag   = var.note_processor_image_tag
 }
