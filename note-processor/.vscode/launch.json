@@ -15,7 +15,11 @@
             },
             "lambda": {
                 "runtime": "nodejs14.x",
-                "payload": {},
+                "payload": {
+                    "json": {
+                        "foo": "bar"
+                    }
+                },
                 "environmentVariables": {},
             }
         }

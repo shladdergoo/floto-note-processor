@@ -1,12 +1,18 @@
-import * as logger from 'npmlog';
+import { container } from './container/inversify.config';
+import { TYPES } from './container/types';
+
+import { Note } from './note';
+import { ProcessorService } from './processor_service';
 
 export const handler = async (event: any = {}): Promise<any> => {
-  const prefix: string = 'floto-note-processor';
+  console.log('start');
 
-  logger.info(prefix, 'start');
+  const note = new Note('foo');
+  const service = container.get<ProcessorService>(TYPES.ProcessorService);
+  service.process(note);
 
   const response = JSON.stringify(event, null, 2);
 
-  logger.info(prefix, 'complete');
+  console.log('complete');
   return response;
 };

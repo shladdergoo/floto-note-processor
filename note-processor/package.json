@@ -31,12 +31,14 @@
     "gen:tests": "npm run build && npm link && rm -rf output && mkdir output && cd output && yo tf-infra --tests && cd .."
   },
   "dependencies": {
-    "npmlog": "^5.0.0"
+    "inversify": "^5.1.1",
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
+    "@types/inversify": "^2.0.33",
     "@types/jest": "^26.0.24",
     "@types/node": "^16.4.3",
-    "@types/npmlog": "^4.1.3",
+    "@types/reflect-metadata": "^0.1.0",
     "coveralls": "^3.1.1",
     "jest": "^27.0.6",
     "prettier": "^2.3.2",
