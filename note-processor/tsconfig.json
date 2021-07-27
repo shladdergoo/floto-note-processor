@@ -19,10 +19,9 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "resolveJsonModule": true
   },
   "include": [
-    "src/**/*", "package.json"
+    "src/**/*"
   ],
   "exclude": [
     "node_modules",

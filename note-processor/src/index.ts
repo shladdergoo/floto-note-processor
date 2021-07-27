@@ -1,8 +1,12 @@
+import * as logger from 'npmlog';
+
 export const handler = async (event: any = {}): Promise<any> => {
-  // tslint:disable-next-line:no-console
-  console.log('Hello World!');
+  const prefix: string = 'floto-note-processor';
+
+  logger.info(prefix, 'start');
 
   const response = JSON.stringify(event, null, 2);
 
+  logger.info(prefix, 'complete');
   return response;
 };
