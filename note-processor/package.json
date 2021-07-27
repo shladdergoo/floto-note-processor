@@ -1,0 +1,52 @@
+{
+  "name": "note-processor",
+  "version": "0.1.0",
+  "description": "Serverless function to enrich and persist received notes",
+  "license": "MIT",
+  "repository": "https://github.com/shladdergoo/floto",
+  "author": {
+    "name": "shladdergoo",
+    "email": "shladdergoo@users.noreply.github.com",
+    "url": "https://github.com/shladdergoo/floto"
+  },
+  "keywords": [
+    "aws",
+    "lambda",
+    "typescript"
+  ],
+  "main": "index",
+  "types": "index",
+  "scripts": {
+    "clean": "rimraf lib && rimraf coverage",
+    "format": "prettier --write \"{src,__tests__}/**/*.ts\" --single-quote --trailing-comma es5",
+    "lint": "tslint --force --format verbose \"src/**/*.ts\"",
+    "prepublishOnly": "npm run build",
+    "prebuild": "npm run clean && npm run format && npm run lint && echo Using TypeScript && tsc --version",
+    "build": "tsc --pretty",
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "watch": "npm run build -- --watch",
+    "watch:test": "jest --watch",
+    "gen": "npm run build && npm link && rm -rf output && mkdir output && cd output && yo tf-infra && cd ..",
+    "gen:tests": "npm run build && npm link && rm -rf output && mkdir output && cd output && yo tf-infra --tests && cd .."
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.24",
+    "@types/node": "^16.4.3",
+    "coveralls": "^3.1.1",
+    "jest": "^27.0.6",
+    "prettier": "^2.3.2",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.4",
+    "ts-node": "^10.1.0",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^4.3.5"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "jest": {
+    "preset": "ts-jest"
+  }
+}
