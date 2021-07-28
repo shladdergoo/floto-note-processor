@@ -1,18 +1,25 @@
 import { container } from './container/inversify.config';
 import { TYPES } from './container/types';
 
-import { Note } from './note';
+import { EventMapper } from './event_mapper';
 import { ProcessorService } from './processor_service';
 
-export const handler = async (event: any = {}): Promise<any> => {
+export class NoteEvent {
+  public noteText: string = '';
+  public hasLocation: string = '';
+  public latitude: string = '';
+  public longitude: string = '';
+  public noteDate: string = '';
+}
+
+export const handler = async (event: NoteEvent): Promise<any> => {
   console.log('start');
+  console.log(event);
 
-  const note = new Note('foo');
+  const note = EventMapper.mapEvent(event);
   const service = container.get<ProcessorService>(TYPES.ProcessorService);
-  service.process(note);
-
-  const response = JSON.stringify(event, null, 2);
+  const noteId = service.process(note);
 
   console.log('complete');
-  return response;
+  return noteId;
 };

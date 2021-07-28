@@ -1,5 +1,5 @@
 import { Note } from './note';
 
 export interface NoteRepository {
-  save(note: Note): void;
+  save(note: Note): string;
 }

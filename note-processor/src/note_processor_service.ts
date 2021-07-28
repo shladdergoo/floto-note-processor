@@ -15,7 +15,7 @@ export class NoteProcessorService implements ProcessorService {
     this._noteRepository = noteRepository;
   }
 
-  process(note: Note): void {
-    this._noteRepository.save(note);
+  process(note: Note): string {
+    return this._noteRepository.save(note);
   }
 }
