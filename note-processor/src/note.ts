@@ -32,8 +32,14 @@ export class Note {
     longitude: number,
     noteDate: Date
   ) {
-    if (!noteText) {
-      throw new ReferenceError('noteText is undefined');
+    if (Number.isNaN(latitude)) {
+      throw new Error('latitude is NaN');
+    }
+    if (Number.isNaN(longitude)) {
+      throw new Error('longitude is NaN');
+    }
+    if (Number.isNaN(noteDate.getDate())) {
+      throw new Error('noteDate is invalid');
     }
 
     this._noteText = noteText;
