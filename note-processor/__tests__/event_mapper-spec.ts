@@ -5,7 +5,7 @@ it('should export class', () => {
   expect(EventMapper).toBeTruthy();
 });
 
-it.each(['foo', ''])('should parse valid values for noteText', (i) => {
+it.each(['foo', ''])('should return valid values for noteText', (i) => {
   const noteEvent = new NoteEvent();
   noteEvent.noteText = i;
   noteEvent.hasLocation = 'false';
