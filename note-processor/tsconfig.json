@@ -19,7 +19,7 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "types": ["reflect-metadata"],
+    "types": ["reflect-metadata", "jest"],
   },
   "include": [
     "src/**/*"
