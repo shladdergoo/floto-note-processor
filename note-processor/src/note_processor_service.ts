@@ -1,5 +1,6 @@
 import { inject, injectable } from 'inversify';
 import { TYPES } from './container/types';
+import 'reflect-metadata';
 
 import { EventBus } from './event_bus';
 import { Note } from './note';
