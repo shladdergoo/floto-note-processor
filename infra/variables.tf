@@ -6,6 +6,8 @@ variable "env" {}
 
 variable "tags" {}
 
+variable "account_id" {}
+
 variable "app_name" {
   default = "floto"
 }
@@ -33,3 +35,13 @@ variable "dynamodb_table_name" {
 variable "dynamodb_partition_key" {
   default = "NoteID"
 }
+
+variable "note_processor_function_name" {
+  default = "note-processor"
+}
+
+variable "note_processor_image_name" {
+  default = "floto-note-processor"
+}
+
+variable "note_processor_image_tag" {}

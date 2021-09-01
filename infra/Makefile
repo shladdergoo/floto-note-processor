@@ -1,3 +1,5 @@
+ACCOUNT_ID := $(shell aws sts get-caller-identity --query Account --output text)
+
 init: check-for-env-and-profile
 	rm -rf ./.terraform
 	terraform init -backend=true -backend-config=./environments/${ENV}/backend.tfvars
@@ -13,7 +15,7 @@ plan: init
 	@echo "* ENV:			${ENV}"
 	@echo "* PROFILE:		${AWS_PROFILE}"
 	@echo "*******************************************"
-	terraform plan --var-file=./environments/${ENV}/variables.tfvars
+	terraform plan --var-file=./environments/${ENV}/variables.tfvars -var="account_id=${ACCOUNT_ID}"
 
 apply: init
 	@echo "*******************************************"
@@ -21,7 +23,7 @@ apply: init
 	@echo "* ENV:			${ENV}"
 	@echo "* PROFILE		${AWS_PROFILE}"
 	@echo "*******************************************"
-	terraform apply --var-file=./environments/${ENV}/variables.tfvars
+	terraform apply --var-file=./environments/${ENV}/variables.tfvars -var="account_id=${ACCOUNT_ID}"
 
 destroy: init
 	@echo "*******************************************"
@@ -29,4 +31,4 @@ destroy: init
 	@echo "* ENV:			${ENV}"
 	@echo "* PROFILE		${AWS_PROFILE}"
 	@echo "*******************************************"
-	terraform destroy --var-file=./environments/${ENV}/variables.tfvars
+	terraform destroy --var-file=./environments/${ENV}/variables.tfvars -var="account_id=${ACCOUNT_ID}"
