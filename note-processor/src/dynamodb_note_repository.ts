@@ -10,6 +10,6 @@ export class DynamoDBNoteRepository implements NoteRepository {
       throw new ReferenceError('note is undefined');
     }
 
-    return '';
+    return '999';
   }
 }
