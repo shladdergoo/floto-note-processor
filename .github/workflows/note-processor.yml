@@ -1,4 +1,4 @@
-name: note-processor_node_build_test
+name: note-processor
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  build_test_node:
     runs-on: ubuntu-latest
 
     strategy:
