@@ -35,7 +35,7 @@ jobs:
         name: note-processor
         path: |
           ./note-processor/.build
-          ./note-processor/.build/**/*.d.ts
+          !./note-processor/.build/**/*.d.ts
 
   build_push_docker:
     runs-on: ubuntu-latest
