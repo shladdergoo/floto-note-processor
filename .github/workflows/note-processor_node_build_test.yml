@@ -1,0 +1,33 @@
+name: note-processor_node_build_test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      working-directory: ./note-processor
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: CI
+      working-directory: ./note-processor
+      run: npm ci
+    - name: Build
+      working-directory: ./note-processor
+      run: npm run build
+    - name: Test
+      working-directory: ./note-processor
+      run: npm test
