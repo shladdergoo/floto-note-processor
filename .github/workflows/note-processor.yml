@@ -38,4 +38,4 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build Image
       working-directory: ./note-processor
-      run: ./ci/build.sh
+      run: ./ci/build.sh latest
