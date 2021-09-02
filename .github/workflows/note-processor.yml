@@ -29,3 +29,10 @@ jobs:
     - name: Test
       working-directory: ./note-processor
       run: npm test
+
+  build_push_docker:
+    runs-on: ubuntu-latest
+    needs: build_test_node
+
+    steps:
+    - uses: actions/checkout@v2
