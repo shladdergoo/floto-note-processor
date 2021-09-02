@@ -25,7 +25,6 @@ jobs:
     - name: CI
       working-directory: ./note-processor
       run: npm ci
-        working
     - name: Build
       working-directory: ./note-processor
       run: npm run build
