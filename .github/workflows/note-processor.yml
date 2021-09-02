@@ -36,3 +36,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Build Image
+      working-directory: ./note-processor
+      run: ./ci/build.sh
