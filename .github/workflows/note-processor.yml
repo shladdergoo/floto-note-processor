@@ -51,5 +51,4 @@ jobs:
     - name: Download all artifacts
       uses: actions/download-artifact@v2
     - name: Build Image
-      working-directory: ./note-processor
       run: ./ci/build.sh latest
