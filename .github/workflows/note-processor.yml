@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x,16.x]
+        node-version: [14.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -42,6 +42,12 @@ jobs:
         name: ci
         path: |
           ./note-processor/ci
+    - name: Archive Dockerfile
+      uses: actions/upload-artifact@v2
+      with:
+        name: dockerfile
+        path: |
+          ./note-processor/Dockerfile
 
   build_push_docker:
     runs-on: ubuntu-latest
@@ -50,6 +56,8 @@ jobs:
     steps:
     - name: Download all artifacts
       uses: actions/download-artifact@v2
+    - name: Move Dockerfile
+      run: mv ./dockerfile/Dockerfile .
     - name: Set permissions
       run: chmod +x ./ci/build.sh
     - name: Build Image
