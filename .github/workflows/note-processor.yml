@@ -32,7 +32,7 @@ jobs:
     - name: Archive production artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: note-processor
+        name: .build
         path: |
           ./note-processor/.build
           !./note-processor/.build/**/*.d.ts
@@ -42,7 +42,8 @@ jobs:
     needs: build_test_node
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Download all artifacts
+      uses: actions/download-artifact@v2
     - name: Build Image
       working-directory: ./note-processor
       run: ./ci/build.sh latest
