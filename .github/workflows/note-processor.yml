@@ -50,5 +50,7 @@ jobs:
     steps:
     - name: Download all artifacts
       uses: actions/download-artifact@v2
+    - name: Set permissions
+      run: chmod +x ./ci/build.sh
     - name: Build Image
       run: ./ci/build.sh latest
