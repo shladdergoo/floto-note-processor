@@ -29,13 +29,19 @@ jobs:
     - name: Test
       working-directory: ./note-processor
       run: npm test
-    - name: Archive production artifacts
+    - name: Archive build artifacts
       uses: actions/upload-artifact@v2
       with:
         name: .build
         path: |
           ./note-processor/.build
           !./note-processor/.build/**/*.d.ts
+    - name: Archive ci scripts
+      uses: actions/upload-artifact@v2
+      with:
+        name: ci
+        path: |
+          ./note-processor/ci
 
   build_push_docker:
     runs-on: ubuntu-latest
