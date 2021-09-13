@@ -47,3 +47,19 @@ module "lambda-note-processor" {
   image_name  = var.note_processor_image_name
   image_tag   = var.note_processor_image_tag
 }
+
+module "iam" {
+  source                 = "./modules/iam"
+  ci_service_user_name   = "${var.env}-ci-service-user"
+  ci_service_policy_name = "${var.env}-ci-service-policy"
+  tags                   = var.tags
+}
+
+output "ci-key" {
+  value = module.iam.ci-key
+}
+
+output "ci-secret" {
+  value = module.iam.ci-secret
+  sensitive = true
+}
