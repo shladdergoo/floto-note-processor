@@ -88,7 +88,7 @@ jobs:
 
     - name: Update lambda function
       env:
-        ACCOUNT_ID: ${{ steps.aws-cred.aws-account-id }}
+        ACCOUNT_ID: ${{ steps.aws-cred.outputs.aws-account-id }}
         IMAGE_TAG: ${{ github.run_number }}
       run: |
        aws lambda update-function-code --function-name \
