@@ -28,15 +28,6 @@ module "dynamodb-table-app" {
   tags          = var.tags
 }
 
-resource "aws_ecr_repository" "note-processor-image-repo" {
-  name                 = "${var.app_name}-${var.note_processor_function_name}"
-  image_tag_mutability = "MUTABLE"
-
-  image_scanning_configuration {
-    scan_on_push = false
-  }
-}
-
 module "lambda-note-processor" {
   source      = "./modules/lambda-container"
   label       = var.app_name
@@ -46,20 +37,4 @@ module "lambda-note-processor" {
   region      = var.region
   image_name  = var.note_processor_image_name
   image_tag   = var.note_processor_image_tag
-}
-
-module "iam" {
-  source                 = "./modules/iam"
-  ci_service_user_name   = "${var.env}-ci-service-user"
-  ci_service_policy_name = "${var.env}-ci-service-policy"
-  tags                   = var.tags
-}
-
-output "ci-key" {
-  value = module.iam.ci-key
-}
-
-output "ci-secret" {
-  value = module.iam.ci-secret
-  sensitive = true
 }
