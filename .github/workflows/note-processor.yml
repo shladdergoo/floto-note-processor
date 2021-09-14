@@ -52,13 +52,7 @@ jobs:
       uses: actions/download-artifact@v2
     - name: Move Dockerfile
       run: mv ./dockerfile/Dockerfile .
-    - name: Build and tag image
-      env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: floto-note-processor
-        IMAGE_TAG: ${{ github.run_number }}
-      run: docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-    
+
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -70,10 +64,11 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Push image to Amazon ECR
+    - name: Build, tag and push image to Amazon ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: floto-note-processor
         IMAGE_TAG: ${{ github.run_number }}
       run: |
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
