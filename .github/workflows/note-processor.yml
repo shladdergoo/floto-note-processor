@@ -36,12 +36,6 @@ jobs:
         path: |
           ./note-processor/.build
           !./note-processor/.build/**/*.d.ts
-    - name: Archive ci scripts
-      uses: actions/upload-artifact@v2
-      with:
-        name: ci
-        path: |
-          ./note-processor/ci
     - name: Archive Dockerfile
       uses: actions/upload-artifact@v2
       with:
@@ -58,12 +52,12 @@ jobs:
       uses: actions/download-artifact@v2
     - name: Move Dockerfile
       run: mv ./dockerfile/Dockerfile .
-    - name: Set permissions
-      run: chmod +x ./ci/build.sh
     - name: Build and tag image
       env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: floto-note-processor
         IMAGE_TAG: ${{ github.run_number }}
-      run: ./ci/build.sh $IMAGE_TAG
+      run: docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
     
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
